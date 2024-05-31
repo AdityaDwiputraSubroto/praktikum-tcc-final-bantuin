@@ -1,0 +1,27 @@
+GET http://localhost:5000/suppliers
+
+###
+GET http://localhost:5000/suppliers/1
+
+###
+POST http://localhost:5000/suppliers
+Content-Type: application/json
+
+{
+    "name": "Coca cola",
+    "email": "cocacola@gmail.com",
+    "address": "Cikarang"
+}
+
+###
+PATCH http://localhost:5000/suppliers/1
+Content-Type: application/json
+
+{
+    "name": "Walls",
+    "email": "walls@gmail.com",
+    "address": "Jakarta"
+}
+
+###
+DELETE http://localhost:5000/suppliers/2

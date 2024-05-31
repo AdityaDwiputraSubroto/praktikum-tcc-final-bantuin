@@ -1,0 +1,34 @@
+cd backend
+npm init -y //membuat package.json
+npm i express mysql2 sequelize(object relational mapping) cors
+
+buat index.js
+import express & cors
+.. bla bla bla
+
+buat database.js
+import sequelize
+buat instance dengan nama db dan pemilihan db
+create db di mysql
+.. bla bla bla
+
+buat package models
+buat usermosel.js
+((berisi struktur table))
+koneksi kita ambil dari database.js
+instansiasi sequelize
+ambil user dari database
+buat func async untuk sync db
+.. bla bla bla
+
+buat package controller
+buat usercontroller.js
+import user
+buat method export untuk get users(request, respond)
+.. bla bla bla
+
+buat package routes
+buat userroute.js untuk routing
+buat endpoint router.get('')
+ctrl + s
+otomoatis melakukan query create table
