@@ -1,6 +1,6 @@
-import express from 'express';
-import cors from 'cors';
-import SupplierRoute from './routes/SupplierRoute.js';
+import express from "express";
+import cors from "cors";
+import SupplierRoute from "./routes/SupplierRoute.js";
 
 const app = express();
 const PORT = 8080;
