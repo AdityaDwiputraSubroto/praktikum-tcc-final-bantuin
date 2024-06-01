@@ -1,21 +1,20 @@
-# backend2/Dockerfile
 # Use an official Node.js runtime as a parent image
 FROM node:16-alpine
 
-# Set the working directory in the container
-WORKDIR /app
+# Set the working directory
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the application code to the working directory
+# Copy the rest of the application code
 COPY . .
 
-# Expose port (assuming your backend listens on port 3000)
-EXPOSE 3000
+# Expose the port the app runs on
+EXPOSE 8080
 
-# Start the Node.js application
+# Command to run the application
 CMD ["node", "index.js"]
