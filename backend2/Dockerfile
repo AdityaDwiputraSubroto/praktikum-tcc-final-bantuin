@@ -1,30 +1,21 @@
-# Gunakan multi-stage build untuk frontend dan backend
-
-# Tahap 1: Build frontend
-FROM node:16-alpine AS build-frontend
-
-WORKDIR /app/backend2
-
-COPY backend2/package.json backend2/package-lock.json ./
-RUN npm install
-
-COPY backend2/ ./
-RUN npm run build
-
-# Tahap 2: Build backend
+# backend2/Dockerfile
+# Use an official Node.js runtime as a parent image
 FROM node:16-alpine
 
-WORKDIR /app/server
+# Set the working directory in the container
+WORKDIR /app
 
-COPY server/package.json server/package-lock.json ./
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-COPY server/ ./
+# Copy the rest of the application code to the working directory
+COPY . .
 
-# Copy build hasil dari tahap 1 ke dalam direktori publik backend
-COPY --from=build-frontend /app/backend2/build ./public
+# Expose port (assuming your backend listens on port 3000)
+EXPOSE 3000
 
-EXPOSE 5000
-
-# Menjalankan aplikasi backend
+# Start the Node.js application
 CMD ["node", "index.js"]

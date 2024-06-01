@@ -1,4 +1,4 @@
-# backend1/Dockerfile
+# frontend/Dockerfile
 # Use an official Node.js runtime as a parent image
 FROM node:16-alpine
 
@@ -14,8 +14,17 @@ RUN npm install
 # Copy the rest of the application code to the working directory
 COPY . .
 
-# Expose port (assuming your backend listens on port 3000)
-EXPOSE 3000
+# Build the React app
+RUN npm run build
 
-# Start the Node.js application
-CMD ["node", "index.js"]
+# Use a lightweight web server to serve the static files
+FROM nginx:alpine
+
+# Copy the build files to the Nginx html directory
+COPY --from=0 /app/build /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx server
+CMD ["nginx", "-g", "daemon off;"]
